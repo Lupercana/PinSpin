@@ -3,17 +3,83 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <vector>
 #include <include/SDL.h>   
 #include <include/SDL_image.h>  
 
 using namespace std;
 
+// Misc
 SDL_Surface* img_base = IMG_Load("../../images/pin_design_outline.png");
 SDL_Surface* img_sel_outline = IMG_Load("../../images/selection_outline.png");
 
-void display_selection_outline(SDL_Renderer* renderer, int current_press)
+// Numbers
+SDL_Surface* img_num_one = IMG_Load("../../images/numbers/one.png");
+SDL_Surface* img_num_two = IMG_Load("../../images/numbers/two.png");
+SDL_Surface* img_num_three = IMG_Load("../../images/numbers/three.png");
+SDL_Surface* img_num_four = IMG_Load("../../images/numbers/four.png");
+SDL_Surface* img_num_five = IMG_Load("../../images/numbers/five.png");
+SDL_Surface* img_num_six = IMG_Load("../../images/numbers/six.png");
+SDL_Surface* img_num_seven = IMG_Load("../../images/numbers/seven.png");
+SDL_Surface* img_num_eight = IMG_Load("../../images/numbers/eight.png");
+SDL_Surface* img_num_nine = IMG_Load("../../images/numbers/nine.png");
+
+void display_cell_visuals(SDL_Renderer* renderer, vector<SDL_Texture*> txt_numbers)
 {
-	SDL_Texture* txt_sel_outline = SDL_CreateTextureFromSurface(renderer, img_sel_outline);
+	const int OFFSET = 5; // selection outline width
+	const int BOX_SIZE = 50;
+	int x;
+	int y;
+
+	// TODO: update to reflect actual cell content values
+	for (int i = 0; i < txt_numbers.size(); i++)
+	{
+		switch (i + 1)
+		{
+			case 1:
+				x = 0;
+				y = 324;
+				break;
+			case 2:
+				x = 162;
+				y = 324;
+				break;
+			case 3:
+				x = 324;
+				y = 324;
+				break;
+			case 4:
+				x = 0;
+				y = 162;
+				break;
+			case 5:
+				x = 162;
+				y = 162;
+				break;
+			case 6:
+				x = 324;
+				y = 162;
+				break;
+			case 7:
+				x = 0;
+				y = 0;
+				break;
+			case 8:
+				x = 162;
+				y = 0;
+				break;
+			case 9:
+				x = 324;
+				y = 0;
+				break;
+		}
+		SDL_Rect rect = {x + OFFSET, y + OFFSET, BOX_SIZE, BOX_SIZE};
+		SDL_RenderCopy(renderer, txt_numbers.at(i), NULL, &rect);
+	}
+}
+
+void display_selection_outline(SDL_Renderer* renderer, SDL_Texture* txt_sel_outline, int current_press)
+{
 	const int OUTLINE_SIZE = 156;
 	int x = 0;
 	int y = 0;
@@ -78,6 +144,18 @@ int main(int argc, char ** argv)
 
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 	SDL_Texture* txt_base = SDL_CreateTextureFromSurface(renderer, img_base);
+	SDL_Texture* txt_sel_outline = SDL_CreateTextureFromSurface(renderer, img_sel_outline);
+
+	vector<SDL_Texture*> txt_numbers;
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_one));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_two));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_three));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_four));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_five));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_six));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_seven));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_eight));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_nine));
 
 	while (!quit)
 	{
@@ -132,11 +210,13 @@ int main(int argc, char ** argv)
 		// Display the base first for layering to work
 		SDL_RenderCopy(renderer, txt_base, NULL, NULL);
 
-		display_selection_outline(renderer, current_press);
+		display_cell_visuals(renderer, txt_numbers); // TODO: pass in vector of cell contents
+ 		display_selection_outline(renderer, txt_sel_outline, current_press);
 
 		SDL_RenderPresent(renderer);
 	}
 
+	// TODO: free everything, otherwise there'll be memory leak
 	SDL_DestroyTexture(txt_base);
 	SDL_FreeSurface(img_base);
 	SDL_DestroyRenderer(renderer);

@@ -24,7 +24,34 @@ SDL_Surface* img_num_seven = IMG_Load("../../images/numbers/seven.png");
 SDL_Surface* img_num_eight = IMG_Load("../../images/numbers/eight.png");
 SDL_Surface* img_num_nine = IMG_Load("../../images/numbers/nine.png");
 
-void display_cell_visuals(SDL_Renderer* renderer, vector<SDL_Texture*> txt_numbers)
+// Colors
+SDL_Surface* img_color_black = IMG_Load("../../images/colors/black.png");
+SDL_Surface* img_color_blue = IMG_Load("../../images/colors/blue.png");
+SDL_Surface* img_color_green = IMG_Load("../../images/colors/green.png");
+SDL_Surface* img_color_grey = IMG_Load("../../images/colors/grey.png");
+SDL_Surface* img_color_orange = IMG_Load("../../images/colors/orange.png");
+SDL_Surface* img_color_pink = IMG_Load("../../images/colors/pink.png");
+SDL_Surface* img_color_red = IMG_Load("../../images/colors/red.png");
+SDL_Surface* img_color_violet = IMG_Load("../../images/colors/violet.png");
+SDL_Surface* img_color_yellow = IMG_Load("../../images/colors/yellow.png");
+
+
+// Colors
+/*
+SDL_Surface* img_shapes_arrow = IMG_Load("../../images/shapes/black.png");
+SDL_Surface* img_shapes_circle = IMG_Load("../../images/shapes/black.png");
+SDL_Surface* img_shapes_heart = IMG_Load("../../images/shapes/black.png");
+SDL_Surface* img_shapes_oval = IMG_Load("../../images/shapes/black.png");
+SDL_Surface* img_shapes_six = IMG_Load("../../images/shapes/black.png");
+SDL_Surface* img_color_black = IMG_Load("../../images/shapes/black.png");
+SDL_Surface* img_color_black = IMG_Load("../../images/shapes/black.png");
+SDL_Surface* img_color_black = IMG_Load("../../images/shapes/black.png");
+SDL_Surface* img_color_black = IMG_Load("../../images/shapes/black.png");
+*/
+
+void display_cell_visuals(SDL_Renderer* renderer, vector<SDL_Texture*> txt_numbers,
+vector<SDL_Texture*> txt_colors)
+//vector<SDL_Texture*> txt_shapes)
 {
 	const int OFFSET = 5; // selection outline width
 	const int BOX_SIZE = 50;
@@ -32,7 +59,7 @@ void display_cell_visuals(SDL_Renderer* renderer, vector<SDL_Texture*> txt_numbe
 	int y;
 
 	// TODO: update to reflect actual cell content values
-	for (int i = 0; i < txt_numbers.size(); i++)
+	for (int i = 0; i < (int)txt_numbers.size(); i++)
 	{
 		switch (i + 1)
 		{
@@ -50,7 +77,7 @@ void display_cell_visuals(SDL_Renderer* renderer, vector<SDL_Texture*> txt_numbe
 				break;
 			case 4:
 				x = 0;
-				y = 162;
+				y = 162;	
 				break;
 			case 5:
 				x = 162;
@@ -73,8 +100,16 @@ void display_cell_visuals(SDL_Renderer* renderer, vector<SDL_Texture*> txt_numbe
 				y = 0;
 				break;
 		}
-		SDL_Rect rect = {x + OFFSET, y + OFFSET, BOX_SIZE, BOX_SIZE};
-		SDL_RenderCopy(renderer, txt_numbers.at(i), NULL, &rect);
+		SDL_Rect upper_left_rect = {x + OFFSET, y + OFFSET, BOX_SIZE, BOX_SIZE};
+		SDL_Rect upper_right_rect = { x + OFFSET, y + OFFSET, BOX_SIZE, BOX_SIZE };
+	//	SDL_Rect lower_left_rect = { x + OFFSET, y + OFFSET, BOX_SIZE, BOX_SIZE };
+		//SDL_Rect lower_right_rect = { x + OFFSET, y + OFFSET, BOX_SIZE, BOX_SIZE };
+
+		SDL_RenderCopy(renderer, txt_numbers.at(i), NULL, &upper_left_rect);
+		SDL_RenderCopy(renderer, txt_colors.at(i), NULL, &upper_right_rect);
+	//	SDL_RenderCopy(renderer, txt_shapes.at(i), NULL, &lower_left_rect);
+		//SDL_RenderCopy(renderer, txt_numbers.at(i), NULL, &rect);
+
 	}
 }
 
@@ -157,6 +192,40 @@ int main(int argc, char ** argv)
 	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_eight));
 	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_nine));
 
+	vector<SDL_Texture*> txt_colors;
+	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_black));
+	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_blue));
+	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_green));
+	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_grey));
+	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_orange));
+	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_pink));
+	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_red));
+	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_violet));
+	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_yellow));
+
+	/*
+	vector<SDL_Texture*> txt_numbers;
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_one));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_two));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_three));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_four));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_five));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_six));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_seven));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_eight));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_nine));
+
+	vector<SDL_Texture*> txt_numbers;
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_one));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_two));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_three));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_four));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_five));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_six));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_seven));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_eight));
+	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_nine));
+	*/
 	while (!quit)
 	{
 		SDL_RenderClear(renderer);
@@ -210,7 +279,7 @@ int main(int argc, char ** argv)
 		// Display the base first for layering to work
 		SDL_RenderCopy(renderer, txt_base, NULL, NULL);
 
-		display_cell_visuals(renderer, txt_numbers); // TODO: pass in vector of cell contents
+		display_cell_visuals(renderer, txt_numbers, txt_colors); // TODO: pass in vector of cell contents
  		display_selection_outline(renderer, txt_sel_outline, current_press);
 
 		SDL_RenderPresent(renderer);
@@ -227,3 +296,4 @@ int main(int argc, char ** argv)
 
 	return 0;
 }
+

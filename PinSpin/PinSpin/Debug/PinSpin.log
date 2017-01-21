@@ -1,5 +1,4 @@
-﻿  stdafx.cpp
-  PinSpin.cpp
-c:\users\skanda\desktop\spartahack2k17\pinspin\pinspin\pinspin.cpp(35): warning C4018: '<': signed/unsigned mismatch
-  PinSpin.vcxproj -> C:\Users\Skanda\Desktop\Spartahack2k17\PinSpin\Debug\PinSpin.exe
-  PinSpin.vcxproj -> C:\Users\Skanda\Desktop\Spartahack2k17\PinSpin\Debug\PinSpin.pdb (Full PDB)
+﻿  PinSpin.cpp
+c:\users\salam16\documents\github\pinspin\pinspin\pinspin\pinspin.cpp(35): warning C4018: '<': signed/unsigned mismatch
+  PinSpin.vcxproj -> C:\Users\salAM16\Documents\GitHub\PinSpin\PinSpin\Debug\PinSpin.exe
+  PinSpin.vcxproj -> C:\Users\salAM16\Documents\GitHub\PinSpin\PinSpin\Debug\PinSpin.pdb (Full PDB)

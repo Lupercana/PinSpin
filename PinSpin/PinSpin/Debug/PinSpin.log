@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 ﻿  randomizer.cpp
 c:\users\skanda\desktop\spartahack2k17\pinspin\pinspin\randomizer.cpp(19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\skanda\desktop\spartahack2k17\pinspin\pinspin\randomizer.cpp(22): warning C4018: '<': signed/unsigned mismatch
 c:\users\skanda\desktop\spartahack2k17\pinspin\pinspin\randomizer.cpp(24): warning C4018: '<': signed/unsigned mismatch
   PinSpin.vcxproj -> C:\Users\Skanda\Desktop\Spartahack2k17\PinSpin\Debug\PinSpin.exe
   PinSpin.vcxproj -> C:\Users\Skanda\Desktop\Spartahack2k17\PinSpin\Debug\PinSpin.pdb (Full PDB)
+=======
+﻿  PinSpin.cpp
+  PinSpin.vcxproj -> C:\Users\Lifan\Desktop\PinSpin\PinSpin\Debug\PinSpin.exe
+  PinSpin.vcxproj -> C:\Users\Lifan\Desktop\PinSpin\PinSpin\Debug\PinSpin.pdb (Full PDB)
+>>>>>>> 572539c48e4a9a73d0c8e8925daec95addde55f8

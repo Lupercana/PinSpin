@@ -1,0 +1,17 @@
+void generatePassword(int password_length, vector<SDL_Surface*> &txt_numbers, vector<SDL_Surface*> &txt_colors, vector<SDL_Surface*> &txt_shapes, vector<SDL_Surface*> &txt_letters, vector<SDL_Surface*> &password)
+{
+	int v1, v2;
+
+	for (int i = 0; i < password_length; i++) {
+		v1 = rand() % 4;
+		v2 = rand() % 9;
+		if (v1 == 0)
+			password[i] = txt_numbers.at(v2);
+		else if (v1 == 1)
+			password[i] = txt_colors.at(v2);
+		else if (v1 == 2)
+			password[i] = txt_shapes.at(v2);
+		else if (v1 == 3)
+			password[i] = txt_shapes.at(v2);
+	}
+}

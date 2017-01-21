@@ -253,43 +253,43 @@ int main(int argc, char ** argv)
 			case SDL_KEYDOWN:
 				switch (event.key.keysym.sym)
 				{
-					case SDLK_1:
+					case SDLK_KP_1:
 						index = 0;
 						current_press = 1;
 						break;
-					case SDLK_2:
+					case SDLK_KP_2:
 						index = 1;
 						current_press = 2;
 						break;
-					case SDLK_3:
+					case SDLK_KP_3:
 						index = 2;
 						current_press = 3;
 						break;
-					case SDLK_4:
+					case SDLK_KP_4:
 						index = 3;
 						current_press = 4;
 						break;
-					case SDLK_5:
+					case SDLK_KP_5:
 						index = 4;
 						current_press = 5;
 						break;
-					case SDLK_6:
+					case SDLK_KP_6:
 						index = 5;
 						current_press = 6;
 						break;
-					case SDLK_7:
+					case SDLK_KP_7:
 						index = 6;
 						current_press = 7;
 						break;
-					case SDLK_8:
+					case SDLK_KP_8:
 						index = 7;
 						current_press = 8;
 						break;
-					case SDLK_9:
+					case SDLK_KP_9:
 						index = 8;
 						current_press = 9;
 						break;
-					case SDLK_0: // password check
+					case SDLK_RIGHT: // password check
 						index = -1;
 						if (password_match == true && password_progress == password.size())
 							cout << "You got the right password!" << endl;
@@ -299,12 +299,12 @@ int main(int argc, char ** argv)
 						password_progress = 0;
 						current_press = 10;
 						break;
-					case SDLK_MINUS: // generate new password
+					case SDLK_KP_0: // generate new password
 						index = -1;
 						generatePassword(4, txt_numbers, txt_colors, txt_shapes, txt_letters, password);
 						current_press = 11;
 						break;
-					case SDLK_EQUALS: // password reset progress 
+					case SDLK_KP_PERIOD: // password reset progress 
 						index = -1;
 						password_match = true;
 						password_progress = 0;

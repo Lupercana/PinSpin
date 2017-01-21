@@ -4,10 +4,11 @@
 #include <include/SDL.h>   
 #include <include/SDL_image.h>  
 #include "Randomizer.h"
-#include <string>
+#include <stdlib.h> 
 #include <time.h>
 
 using namespace std;
+
 void randomizer(vector<SDL_Texture*> & v) {
 	int size = v.size();
 	vector< SDL_Texture*> vtemp;
@@ -16,12 +17,11 @@ void randomizer(vector<SDL_Texture*> & v) {
 	}
 	vector <int> used; 
 	v.clear();
-	srand(time(NULL));
 	int randnum;
 	bool repeat = false;
-	while ( used.size() < size) {
+	while ( (int)used.size() < size) {
 		randnum = rand() % size;
-		for (int i = 0; i < used.size(); i++) {
+		for (int i = 0; i < (int)used.size(); i++) {
 			if (used.at(i) == randnum) {
 				repeat = true;
 			}
@@ -36,4 +36,25 @@ void randomizer(vector<SDL_Texture*> & v) {
 		}
 	}
 
+}
+
+void generatePassword(int password_length, vector<SDL_Texture*> &txt_numbers, 
+	vector<SDL_Texture*> &txt_colors, vector<SDL_Texture*> &txt_shapes, vector<SDL_Texture*> &txt_letters,
+	vector<SDL_Texture*> &password)
+{
+	int v1, v2;
+
+	for (int i = 0; i < password_length; i++) {
+		v1 = rand() % 4;
+		v2 = rand() % 9;
+		cout << v1 << " " << v2 << endl;
+		if (v1 == 0)
+			password.push_back(txt_numbers.at(v2));
+		else if (v1 == 1)
+			password.push_back(txt_colors.at(v2));
+		else if (v1 == 2)
+			password.push_back(txt_shapes.at(v2));
+		else if (v1 == 3)
+			password.push_back(txt_shapes.at(v2));
+	}
 }

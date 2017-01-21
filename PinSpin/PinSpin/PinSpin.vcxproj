@@ -148,11 +148,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Check.h" />
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Check.cpp" />
     <ClCompile Include="PinSpin.cpp" />
     <ClCompile Include="randomizer.cpp" />
     <ClCompile Include="stdafx.cpp">

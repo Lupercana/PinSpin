@@ -7,6 +7,9 @@
 #include <include/SDL.h>   
 #include <include/SDL_image.h>  
 #include "Randomizer.h"
+#include <stdlib.h> 
+#include <time.h>
+#include "Check.h"
 
 using namespace std;
 
@@ -179,6 +182,7 @@ void display_selection_outline(SDL_Renderer* renderer, SDL_Texture* txt_sel_outl
 
 int main(int argc, char ** argv)
 {
+	srand((unsigned int)time(NULL));
 	int current_press = 0;
 	bool quit = false;
 	SDL_Event event;
@@ -244,7 +248,10 @@ int main(int argc, char ** argv)
 	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_I));
 
 	randomizer(txt_letters);
-
+	vector< SDL_Texture*> password;
+	generatePassword(4, txt_numbers, txt_colors, txt_shapes, txt_letters,password);
+	int password_progress = 0;
+	bool password_match = true;
 	while (!quit)
 	{
 		SDL_RenderClear(renderer);
@@ -252,40 +259,72 @@ int main(int argc, char ** argv)
 
 		switch (event.type)
 		{
+			int index;
 			case SDL_KEYDOWN:
 				switch (event.key.keysym.sym)
 				{
 					case SDLK_1:
+						index = 0;
 						current_press = 1;
 						break;
 					case SDLK_2:
+						index = 1;
 						current_press = 2;
 						break;
 					case SDLK_3:
+						index = 2;
 						current_press = 3;
 						break;
 					case SDLK_4:
+						index = 3;
 						current_press = 4;
 						break;
 					case SDLK_5:
+						index = 4;
 						current_press = 5;
 						break;
 					case SDLK_6:
+						index = 5;
 						current_press = 6;
 						break;
 					case SDLK_7:
+						index = 6;
 						current_press = 7;
 						break;
 					case SDLK_8:
+						index = 7;
 						current_press = 8;
 						break;
 					case SDLK_9:
+						index = 8;
 						current_press = 9;
 						break;
+					case SDLK_0: // password check
+						index = -1;
+						if (password_match == true && password_progress == password.size())
+							cout << "You got the right password!" << endl;
+						else
+							cout << "You got the wrong password!" << endl;
+						password_match = true;
+						password_progress = 0;
+					case SDLK_PLUS: // password reset progress 
+						index = -1;
+						password_match = true;
+						password_progress = 0;
+						break;
 					default:
+						index = -1;
 						cout << "Unmapped key press." << endl;
 						break;
 				}
+				if (index != -1)
+				{
+					if (password_match = check_key_match(password, password_progress,
+						txt_numbers.at(index), txt_colors.at(index), txt_shapes.at(index),
+						txt_letters.at(index))) // did this on purpose
+						password_progress++;
+				}
+
 				break;
 			case SDL_KEYUP:
 				current_press = 0;
@@ -294,6 +333,8 @@ int main(int argc, char ** argv)
 				quit = true;
 				break;
 		}
+
+		
 
 		// Display the base first for layering to work
 		SDL_RenderCopy(renderer, txt_base, NULL, NULL);

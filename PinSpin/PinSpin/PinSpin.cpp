@@ -47,21 +47,21 @@ SDL_Surface* img_shape_snowflake = IMG_Load("../../images/shapes/snowflake.png")
 SDL_Surface* img_shape_square = IMG_Load("../../images/shapes/square.png");
 SDL_Surface* img_shape_triangle = IMG_Load("../../images/shapes/triangle.png");
 
-// Numbers
-SDL_Surface* img_ = IMG_Load("../../images/shapes/arrow.png");
-SDL_Surface* img_shapes_circle = IMG_Load("../../images/shapes/circle.png");
-SDL_Surface* img_shapes_crescent = IMG_Load("../../images/shapes/crescent.png");
-SDL_Surface* img_shapes_diamond = IMG_Load("../../images/shapes/diamond.png");
-SDL_Surface* img_shapes_heart = IMG_Load("../../images/shapes/heart.png");
-SDL_Surface* img_shapes_leaf = IMG_Load("../../images/shapes/leaf.png");
-SDL_Surface* img_shapes_snowflake = IMG_Load("../../images/shapes/snowflake.png");
-SDL_Surface* img_shapes_square = IMG_Load("../../images/shapes/square.png");
-SDL_Surface* img_shapes_triangle = IMG_Load("../../images/shapes/triangle.png");
+// Letters
+SDL_Surface* img_letter_A = IMG_Load("../../images/letters/A.png");
+SDL_Surface* img_letter_B = IMG_Load("../../images/letters/B.png");
+SDL_Surface* img_letter_C = IMG_Load("../../images/letters/C.png");
+SDL_Surface* img_letter_D = IMG_Load("../../images/letters/D.png");
+SDL_Surface* img_letter_E = IMG_Load("../../images/letters/E.png");
+SDL_Surface* img_letter_F = IMG_Load("../../images/leters/F.png");
+SDL_Surface* img_letter_G = IMG_Load("../../images/letters/G.png");
+SDL_Surface* img_letter_H = IMG_Load("../../images/letters/H.png");
+SDL_Surface* img_letter_I = IMG_Load("../../images/letters/I.png");
+
 
 
 void display_cell_visuals(SDL_Renderer* renderer, vector<SDL_Texture*> &txt_numbers,
-vector<SDL_Texture*> &txt_colors, vector<SDL_Texture*> &txt_shapes)
-//vector<SDL_Texture*> txt_shapes)
+vector<SDL_Texture*> &txt_colors, vector<SDL_Texture*> &txt_shapes, vector<SDL_Texture*> &txt_letters)
 {
 	const int OFFSET = 5; // selection outline width
 	const int CELL_LENGTH = 78; // width/length of a box
@@ -114,12 +114,12 @@ vector<SDL_Texture*> &txt_colors, vector<SDL_Texture*> &txt_shapes)
 		SDL_Rect upper_left_rect = {x + OFFSET, y + OFFSET, BOX_SIZE, BOX_SIZE};
 		SDL_Rect upper_right_rect = { x + OFFSET + CELL_LENGTH, y + OFFSET, BOX_SIZE, BOX_SIZE };
 		SDL_Rect lower_left_rect = { x + OFFSET, y + OFFSET + CELL_LENGTH, BOX_SIZE, BOX_SIZE };
-		//SDL_Rect lower_right_rect = { x + OFFSET +, y + OFFSET, BOX_SIZE, BOX_SIZE };
+		SDL_Rect lower_right_rect = { x + OFFSET + CELL_LENGTH, y + OFFSET + CELL_LENGTH, BOX_SIZE, BOX_SIZE };
 
 		SDL_RenderCopy(renderer, txt_numbers.at(i), NULL, &upper_left_rect);
 		SDL_RenderCopy(renderer, txt_colors.at(i), NULL, &upper_right_rect);
 		SDL_RenderCopy(renderer, txt_shapes.at(i), NULL, &lower_left_rect);
-		//SDL_RenderCopy(renderer, txt_numbers.at(i), NULL, &rect);
+		SDL_RenderCopy(renderer, txt_letters.at(i), NULL, &lower_right_rect);
 
 	}
 }
@@ -226,18 +226,18 @@ int main(int argc, char ** argv)
 	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_square));
 	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_triangle));
 
-	/*
-	vector<SDL_Texture*> txt_numbers;
-	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_one));
-	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_two));
-	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_three));
-	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_four));
-	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_five));
-	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_six));
-	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_seven));
-	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_eight));
-	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_nine));
-	*/
+	
+	vector<SDL_Texture*> txt_letters;
+	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_A));
+	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_B));
+	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_C));
+	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_D));
+	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_E));
+	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_F));
+	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_G));
+	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_H));
+	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_I));
+
 	while (!quit)
 	{
 		SDL_RenderClear(renderer);
@@ -291,7 +291,7 @@ int main(int argc, char ** argv)
 		// Display the base first for layering to work
 		SDL_RenderCopy(renderer, txt_base, NULL, NULL);
 
-		display_cell_visuals(renderer, txt_numbers, txt_colors, txt_shapes); // TODO: pass in vector of cell contents
+		display_cell_visuals(renderer, txt_numbers, txt_colors, txt_shapes, txt_letters); 
  		display_selection_outline(renderer, txt_sel_outline, current_press);
 
 		SDL_RenderPresent(renderer);

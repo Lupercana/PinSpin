@@ -1,3 +1,15 @@
+<<<<<<< HEAD
 ﻿  randomizer.cpp
   PinSpin.vcxproj -> C:\Users\Skanda\Desktop\Spartahack2k17\PinSpin\Debug\PinSpin.exe
   PinSpin.vcxproj -> C:\Users\Skanda\Desktop\Spartahack2k17\PinSpin\Debug\PinSpin.pdb (Full PDB)
+=======
+﻿  PinSpin.cpp
+c:\users\lifan\desktop\pinspin\pinspin\pinspin\pinspin.cpp(200): warning C4018: '<': signed/unsigned mismatch
+c:\users\lifan\desktop\pinspin\pinspin\pinspin\pinspin.cpp(205): warning C4018: '<': signed/unsigned mismatch
+c:\users\lifan\desktop\pinspin\pinspin\pinspin\pinspin.cpp(210): warning C4018: '<': signed/unsigned mismatch
+c:\users\lifan\desktop\pinspin\pinspin\pinspin\pinspin.cpp(215): warning C4018: '<': signed/unsigned mismatch
+c:\users\lifan\desktop\pinspin\pinspin\pinspin\pinspin.cpp(284): warning C4018: '<': signed/unsigned mismatch
+c:\users\lifan\desktop\pinspin\pinspin\pinspin\pinspin.cpp(291): warning C4018: '<': signed/unsigned mismatch
+  PinSpin.vcxproj -> C:\Users\Lifan\Desktop\PinSpin\PinSpin\Debug\PinSpin.exe
+  PinSpin.vcxproj -> C:\Users\Lifan\Desktop\PinSpin\PinSpin\Debug\PinSpin.pdb (Full PDB)
+>>>>>>> ed97a5e044d69c46b8ad664ac56bff89b81b3e25

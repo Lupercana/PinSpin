@@ -1,3 +1,6 @@
 ﻿  PinSpin.cpp
+c:\users\lifan\desktop\pinspin\pinspin\pinspin\pinspin.cpp(199): warning C4018: '<': signed/unsigned mismatch
+c:\users\lifan\desktop\pinspin\pinspin\pinspin\pinspin.cpp(204): warning C4018: '<': signed/unsigned mismatch
+c:\users\lifan\desktop\pinspin\pinspin\pinspin\pinspin.cpp(298): warning C4018: '<': signed/unsigned mismatch
   PinSpin.vcxproj -> C:\Users\Lifan\Desktop\PinSpin\PinSpin\Debug\PinSpin.exe
   PinSpin.vcxproj -> C:\Users\Lifan\Desktop\PinSpin\PinSpin\Debug\PinSpin.pdb (Full PDB)

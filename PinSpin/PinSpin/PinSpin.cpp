@@ -167,31 +167,31 @@ int main(int argc, char ** argv)
 			case SDL_KEYDOWN:
 				switch (event.key.keysym.sym)
 				{
-					case SDLK_KP_1:
+					case SDLK_1:
 						current_press = 1;
 						break;
-					case SDLK_KP_2:
+					case SDLK_2:
 						current_press = 2;
 						break;
-					case SDLK_KP_3:
+					case SDLK_3:
 						current_press = 3;
 						break;
-					case SDLK_KP_4:
+					case SDLK_4:
 						current_press = 4;
 						break;
-					case SDLK_KP_5:
+					case SDLK_5:
 						current_press = 5;
 						break;
-					case SDLK_KP_6:
+					case SDLK_6:
 						current_press = 6;
 						break;
-					case SDLK_KP_7:
+					case SDLK_7:
 						current_press = 7;
 						break;
-					case SDLK_KP_8:
+					case SDLK_8:
 						current_press = 8;
 						break;
-					case SDLK_KP_9:
+					case SDLK_9:
 						current_press = 9;
 						break;
 					default:

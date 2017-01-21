@@ -8,7 +8,7 @@
 #include <include/SDL.h>   
 #include <include/SDL_image.h>  
 
-void randomizer( std::vector<SDL_Texture*> & v);
+std :: vector<SDL_Texture*> randomizer( std::vector<SDL_Texture*> & v);
 
 void generatePassword(int password_length, std::vector<SDL_Texture*> &txt_numbers, std::vector<SDL_Texture*> &txt_colors,
 	std::vector<SDL_Texture*> &txt_shapes, std::vector<SDL_Texture*> &txt_letters,

@@ -1,3 +1,4 @@
 ﻿  PinSpin.cpp
+c:\users\skanda\desktop\spartahack2k17\pinspin\pinspin\pinspin.cpp(201): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   PinSpin.vcxproj -> C:\Users\Skanda\Desktop\Spartahack2k17\PinSpin\Debug\PinSpin.exe
   PinSpin.vcxproj -> C:\Users\Skanda\Desktop\Spartahack2k17\PinSpin\Debug\PinSpin.pdb (Full PDB)

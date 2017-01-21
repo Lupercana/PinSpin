@@ -176,6 +176,18 @@ void display_selection_outline(SDL_Renderer* renderer, SDL_Texture* txt_sel_outl
 			x = 324;
 			y = 0;
 			break;
+		case 10:
+			x = 0;
+			y = 486;
+			break;
+		case 11:
+			x = 162;
+			y = 486;
+			break;
+		case 12:
+			x = 324;
+			y = 486;
+			break;
 	}
 
 	SDL_Rect rect = {x, y, OUTLINE_SIZE, OUTLINE_SIZE};
@@ -186,7 +198,7 @@ void display_selection_outline(SDL_Renderer* renderer, SDL_Texture* txt_sel_outl
 
 int main(int argc, char ** argv)
 {
-	srand((unsigned int)time(NULL));
+	srand(time(NULL));
 	int current_press = 0;
 	bool quit = false;
 	SDL_Event event;
@@ -194,8 +206,8 @@ int main(int argc, char ** argv)
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
 
-	SDL_Window * window = SDL_CreateWindow("Application",
-		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 480, 480, 0);
+	SDL_Window * window = SDL_CreateWindow("Virtual Keypad",
+		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 480, 640, 0);
 
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 	SDL_Texture* txt_base = SDL_CreateTextureFromSurface(renderer, img_base);
@@ -205,25 +217,29 @@ int main(int argc, char ** argv)
 	for (unsigned int i = 0; i < img_numbers.size(); i++) {
 		txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_numbers.at(i)));
 	}
+	vector<SDL_Texture*> rand_txt_numbers = randomizer(txt_numbers);
 
 	vector<SDL_Texture*> txt_colors;
 	for (unsigned int i = 0; i < img_colors.size(); i++) {
 		txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_colors.at(i)));
 	}
+	vector<SDL_Texture*> rand_txt_colors= randomizer(txt_colors);
 
 	vector<SDL_Texture*> txt_shapes;
 	for (unsigned int i = 0; i < img_shapes.size(); i++) {
 		txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shapes.at(i)));
 	}
+	vector<SDL_Texture*> rand_txt_shapes = randomizer(txt_shapes);
+
 	
 	vector<SDL_Texture*> txt_letters;
 	for (unsigned int i = 0; i < img_letters.size(); i++) {
 		txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letters.at(i)));
 	}
+	vector<SDL_Texture*> rand_txt_letters = randomizer(txt_letters);
 
-	randomizer(txt_letters);
 	vector< SDL_Texture*> password;
-	generatePassword(4, txt_numbers, txt_colors, txt_shapes, txt_letters,password);
+	generatePassword(4, txt_numbers, txt_colors, txt_shapes, txt_letters, password);
 	int password_progress = 0;
 	bool password_match = true;
 	while (!quit)
@@ -281,10 +297,18 @@ int main(int argc, char ** argv)
 							cout << "You got the wrong password!" << endl;
 						password_match = true;
 						password_progress = 0;
+						current_press = 10;
+						break;
+					case SDLK_MINUS: // generate new password
+						index = -1;
+						generatePassword(4, txt_numbers, txt_colors, txt_shapes, txt_letters, password);
+						current_press = 11;
+						break;
 					case SDLK_EQUALS: // password reset progress 
 						index = -1;
 						password_match = true;
 						password_progress = 0;
+						current_press = 12;
 						break;
 					default:
 						index = -1;
@@ -294,8 +318,8 @@ int main(int argc, char ** argv)
 				if (index != -1)
 				{
 					if (password_match = check_key_match(password, password_progress,
-						txt_numbers.at(index), txt_colors.at(index), txt_shapes.at(index),
-						txt_letters.at(index))) // did this on purpose
+						rand_txt_numbers.at(index), rand_txt_colors.at(index), rand_txt_shapes.at(index),
+						rand_txt_letters.at(index))) // did this on purpose
 						password_progress++;
 				}
 
@@ -308,18 +332,15 @@ int main(int argc, char ** argv)
 				break;
 		}
 
-		
-
 		// Display the base first for layering to work
 		SDL_RenderCopy(renderer, txt_base, NULL, NULL);
 
-		display_cell_visuals(renderer, txt_numbers, txt_colors, txt_shapes, txt_letters); 
+		display_cell_visuals(renderer, rand_txt_numbers, rand_txt_colors, rand_txt_shapes, rand_txt_letters);
  		display_selection_outline(renderer, txt_sel_outline, current_press);
 
 		SDL_RenderPresent(renderer);
 	}
 
-	// TODO: free everything, otherwise there'll be memory leak
 	SDL_DestroyTexture(txt_base);
 	SDL_FreeSurface(img_base);
 	SDL_DestroyTexture(txt_sel_outline);

@@ -42,6 +42,7 @@ void generatePassword(int password_length, vector<SDL_Texture*> &txt_numbers,
 
 	password.resize(password_length);
 
+	cout << "\nPassword:" << endl;
 	for (int i = 0; i < password_length; i++) {
 		v1 = rand() % 4;
 		v2 = rand() % 9;

@@ -53,6 +53,7 @@ vector<SDL_Texture*> &txt_colors, vector<SDL_Texture*> &txt_shapes)
 //vector<SDL_Texture*> txt_shapes)
 {
 	const int OFFSET = 5; // selection outline width
+	const int CELL_LENGTH = 78; // width/length of a box
 	const int BOX_SIZE = 50;
 	int x;
 	int y;
@@ -100,9 +101,9 @@ vector<SDL_Texture*> &txt_colors, vector<SDL_Texture*> &txt_shapes)
 				break;
 		}
 		SDL_Rect upper_left_rect = {x + OFFSET, y + OFFSET, BOX_SIZE, BOX_SIZE};
-		SDL_Rect upper_right_rect = { x + OFFSET, y + OFFSET, BOX_SIZE, BOX_SIZE };
-		SDL_Rect lower_left_rect = { x + OFFSET, y + OFFSET, BOX_SIZE, BOX_SIZE };
-		//SDL_Rect lower_right_rect = { x + OFFSET, y + OFFSET, BOX_SIZE, BOX_SIZE };
+		SDL_Rect upper_right_rect = { x + OFFSET + CELL_LENGTH, y + OFFSET, BOX_SIZE, BOX_SIZE };
+		SDL_Rect lower_left_rect = { x + OFFSET, y + OFFSET + CELL_LENGTH, BOX_SIZE, BOX_SIZE };
+		//SDL_Rect lower_right_rect = { x + OFFSET +, y + OFFSET, BOX_SIZE, BOX_SIZE };
 
 		SDL_RenderCopy(renderer, txt_numbers.at(i), NULL, &upper_left_rect);
 		SDL_RenderCopy(renderer, txt_colors.at(i), NULL, &upper_right_rect);

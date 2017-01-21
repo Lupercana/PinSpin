@@ -49,8 +49,8 @@ SDL_Surface* img_color_black = IMG_Load("../../images/shapes/black.png");
 SDL_Surface* img_color_black = IMG_Load("../../images/shapes/black.png");
 */
 
-void display_cell_visuals(SDL_Renderer* renderer, vector<SDL_Texture*> &txt_numbers,
-vector<SDL_Texture*> &txt_colors)
+void display_cell_visuals(SDL_Renderer* renderer, vector<SDL_Texture*> txt_numbers,
+vector<SDL_Texture*> txt_colors)
 //vector<SDL_Texture*> txt_shapes)
 {
 	const int OFFSET = 5; // selection outline width

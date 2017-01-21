@@ -25,37 +25,38 @@ vector<SDL_Surface*> img_numbers {	IMG_Load("../../images/numbers/one.png"),
 									IMG_Load("../../images/numbers/nine.png") };
 
 // Colors
-vector<SDL_Surface*> img_colors{ IMG_Load("../../images/colors/black.png"),
-								IMG_Load("../../images/colors/blue.png"),
-								IMG_Load("../../images/colors/green.png"),
-								IMG_Load("../../images/colors/grey.png"),
-								IMG_Load("../../images/colors/orange.png"),
-								IMG_Load("../../images/colors/pink.png"),
-								IMG_Load("../../images/colors/red.png"),
-								IMG_Load("../../images/colors/violet.png"),
-								IMG_Load("../../images/colors/yellow.png") };
+vector<SDL_Surface*> img_colors{    IMG_Load("../../images/colors/black.png"),
+									IMG_Load("../../images/colors/blue.png"),
+									IMG_Load("../../images/colors/green.png"),
+									IMG_Load("../../images/colors/grey.png"),
+									IMG_Load("../../images/colors/orange.png"),
+									IMG_Load("../../images/colors/pink.png"),
+									IMG_Load("../../images/colors/red.png"),
+									IMG_Load("../../images/colors/violet.png"),
+									IMG_Load("../../images/colors/yellow.png") };
 
 // Shapes
-SDL_Surface* img_shape_arrow = IMG_Load("../../images/shapes/arrow.png");
-SDL_Surface* img_shape_circle = IMG_Load("../../images/shapes/circle.png");
-SDL_Surface* img_shape_crescent = IMG_Load("../../images/shapes/crescent.png");
-SDL_Surface* img_shape_diamond = IMG_Load("../../images/shapes/diamond.png");
-SDL_Surface* img_shape_heart = IMG_Load("../../images/shapes/heart.png");
-SDL_Surface* img_shape_leaf = IMG_Load("../../images/shapes/leaf.png");
-SDL_Surface* img_shape_snowflake = IMG_Load("../../images/shapes/snowflake.png");
-SDL_Surface* img_shape_square = IMG_Load("../../images/shapes/square.png");
-SDL_Surface* img_shape_triangle = IMG_Load("../../images/shapes/triangle.png");
+vector<SDL_Surface*> img_shapes{    IMG_Load("../../images/shapes/arrow.png"),
+									IMG_Load("../../images/shapes/circle.png"),
+									IMG_Load("../../images/shapes/crescent.png"),
+									IMG_Load("../../images/shapes/diamond.png"),
+									IMG_Load("../../images/shapes/heart.png"),
+									IMG_Load("../../images/shapes/leaf.png"),
+									IMG_Load("../../images/shapes/snowflake.png"),
+									IMG_Load("../../images/shapes/square.png"),
+									IMG_Load("../../images/shapes/triangle.png") };
 
-// Letters
-SDL_Surface* img_letter_A = IMG_Load("../../images/letters/A.png");
-SDL_Surface* img_letter_B = IMG_Load("../../images/letters/B.png");
-SDL_Surface* img_letter_C = IMG_Load("../../images/letters/C.png");
-SDL_Surface* img_letter_D = IMG_Load("../../images/letters/D.png");
-SDL_Surface* img_letter_E = IMG_Load("../../images/letters/E.png");
-SDL_Surface* img_letter_F = IMG_Load("../../images/leters/F.png");
-SDL_Surface* img_letter_G = IMG_Load("../../images/letters/G.png");
-SDL_Surface* img_letter_H = IMG_Load("../../images/letters/H.png");
-SDL_Surface* img_letter_I = IMG_Load("../../images/letters/I.png");
+// Leters
+vector<SDL_Surface*> img_letters{   IMG_Load("../../images/letters/A.png"),
+									IMG_Load("../../images/letters/B.png"),
+									IMG_Load("../../images/letters/C.png"),
+									IMG_Load("../../images/letters/D.png"),
+									IMG_Load("../../images/letters/E.png"),
+									IMG_Load("../../images/letters/F.png"),
+									IMG_Load("../../images/letters/G.png"),
+									IMG_Load("../../images/letters/H.png"),
+									IMG_Load("../../images/letters/I.png") };
+
 
 void remove_img(SDL_Surface* img) {
 	SDL_FreeSurface(img);
@@ -205,30 +206,15 @@ int main(int argc, char ** argv)
 		txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_colors.at(i)));
 	}
 
-
-	
 	vector<SDL_Texture*> txt_shapes;
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_arrow));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_circle));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_crescent));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_diamond));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_heart));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_leaf));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_snowflake));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_square));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_triangle));
-
+	for (int i = 0; i < img_shapes.size(); i++) {
+		txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shapes.at(i)));
+	}
 	
 	vector<SDL_Texture*> txt_letters;
-	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_A));
-	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_B));
-	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_C));
-	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_D));
-	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_E));
-	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_F));
-	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_G));
-	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_H));
-	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_I));
+	for (int i = 0; i < img_letters.size(); i++) {
+		txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letters.at(i)));
+	}
 
 	while (!quit)
 	{
@@ -301,6 +287,14 @@ int main(int argc, char ** argv)
 		SDL_DestroyTexture(txt_letters.at(i));
 		SDL_DestroyTexture(txt_colors.at(i));		
 	}
+
+	for (int i = 0; i < img_colors.size(); i++) {
+		SDL_FreeSurface(img_numbers.at(i));
+		SDL_FreeSurface(img_shapes.at(i));
+		SDL_FreeSurface(img_letters.at(i));
+		SDL_FreeSurface(img_colors.at(i));
+	}
+
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 

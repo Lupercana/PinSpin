@@ -37,7 +37,18 @@ SDL_Surface* img_color_yellow = IMG_Load("../../images/colors/yellow.png");
 
 
 // Shapes
-SDL_Surface* img_shapes_arrow = IMG_Load("../../images/shapes/arrow.png");
+SDL_Surface* img_shape_arrow = IMG_Load("../../images/shapes/arrow.png");
+SDL_Surface* img_shape_circle = IMG_Load("../../images/shapes/circle.png");
+SDL_Surface* img_shape_crescent = IMG_Load("../../images/shapes/crescent.png");
+SDL_Surface* img_shape_diamond = IMG_Load("../../images/shapes/diamond.png");
+SDL_Surface* img_shape_heart = IMG_Load("../../images/shapes/heart.png");
+SDL_Surface* img_shape_leaf = IMG_Load("../../images/shapes/leaf.png");
+SDL_Surface* img_shape_snowflake = IMG_Load("../../images/shapes/snowflake.png");
+SDL_Surface* img_shape_square = IMG_Load("../../images/shapes/square.png");
+SDL_Surface* img_shape_triangle = IMG_Load("../../images/shapes/triangle.png");
+
+// Numbers
+SDL_Surface* img_ = IMG_Load("../../images/shapes/arrow.png");
 SDL_Surface* img_shapes_circle = IMG_Load("../../images/shapes/circle.png");
 SDL_Surface* img_shapes_crescent = IMG_Load("../../images/shapes/crescent.png");
 SDL_Surface* img_shapes_diamond = IMG_Load("../../images/shapes/diamond.png");
@@ -205,15 +216,15 @@ int main(int argc, char ** argv)
 
 	
 	vector<SDL_Texture*> txt_shapes;
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shapes_arrow));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shapes_circle));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shapes_crescent));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shapes_diamond));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shapes_heart));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shapes_leaf));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shapes_snowflake));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shapes_square));
-	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shapes_triangle));
+	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_arrow));
+	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_circle));
+	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_crescent));
+	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_diamond));
+	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_heart));
+	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_leaf));
+	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_snowflake));
+	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_square));
+	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_triangle));
 
 	/*
 	vector<SDL_Texture*> txt_numbers;

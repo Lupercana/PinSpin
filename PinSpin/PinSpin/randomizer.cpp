@@ -40,18 +40,20 @@ void generatePassword(int password_length, vector<SDL_Texture*> &txt_numbers,
 {
 	int v1, v2;
 
+	password.resize(password_length);
+
 	for (int i = 0; i < password_length; i++) {
 		v1 = rand() % 4;
 		v2 = rand() % 9;
 
 		if (v1 == 0)
-			password.push_back(txt_numbers.at(v2));
+			password.at(i) = txt_numbers.at(v2);
 		else if (v1 == 1)
-			password.push_back(txt_colors.at(v2));
+			password.at(i) = txt_colors.at(v2);
 		else if (v1 == 2)
-			password.push_back(txt_shapes.at(v2));
+			password.at(i) = txt_shapes.at(v2);
 		else if (v1 == 3)
-			password.push_back(txt_letters.at(v2));
+			password.at(i) = txt_letters.at(v2);
 
 		for (unsigned int j = 0; j < txt_numbers.size(); j++)
 		{

@@ -6,6 +6,7 @@
 #include <vector>
 #include <include/SDL.h>   
 #include <include/SDL_image.h>  
+#include "Randomizer.h"
 
 using namespace std;
 
@@ -53,7 +54,7 @@ SDL_Surface* img_letter_B = IMG_Load("../../images/letters/B.png");
 SDL_Surface* img_letter_C = IMG_Load("../../images/letters/C.png");
 SDL_Surface* img_letter_D = IMG_Load("../../images/letters/D.png");
 SDL_Surface* img_letter_E = IMG_Load("../../images/letters/E.png");
-SDL_Surface* img_letter_F = IMG_Load("../../images/leters/F.png");
+SDL_Surface* img_letter_F = IMG_Load("../../images/letters/F.png");
 SDL_Surface* img_letter_G = IMG_Load("../../images/letters/G.png");
 SDL_Surface* img_letter_H = IMG_Load("../../images/letters/H.png");
 SDL_Surface* img_letter_I = IMG_Load("../../images/letters/I.png");
@@ -203,6 +204,8 @@ int main(int argc, char ** argv)
 	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_eight));
 	txt_numbers.push_back(SDL_CreateTextureFromSurface(renderer, img_num_nine));
 
+	randomizer(txt_numbers);
+
 	vector<SDL_Texture*> txt_colors;
 	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_black));
 	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_blue));
@@ -214,6 +217,7 @@ int main(int argc, char ** argv)
 	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_violet));
 	txt_colors.push_back(SDL_CreateTextureFromSurface(renderer, img_color_yellow));
 
+	randomizer(txt_colors);
 	
 	vector<SDL_Texture*> txt_shapes;
 	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_arrow));
@@ -226,7 +230,8 @@ int main(int argc, char ** argv)
 	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_square));
 	txt_shapes.push_back(SDL_CreateTextureFromSurface(renderer, img_shape_triangle));
 
-	
+	randomizer(txt_shapes);
+
 	vector<SDL_Texture*> txt_letters;
 	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_A));
 	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_B));
@@ -237,6 +242,8 @@ int main(int argc, char ** argv)
 	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_G));
 	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_H));
 	txt_letters.push_back(SDL_CreateTextureFromSurface(renderer, img_letter_I));
+
+	randomizer(txt_letters);
 
 	while (!quit)
 	{

@@ -281,7 +281,7 @@ int main(int argc, char ** argv)
 							cout << "You got the wrong password!" << endl;
 						password_match = true;
 						password_progress = 0;
-					case SDLK_EQUALS: // password reset progress 
+					case SDLK_PLUS: // password reset progress 
 						index = -1;
 						password_match = true;
 						password_progress = 0;

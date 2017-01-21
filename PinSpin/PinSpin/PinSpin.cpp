@@ -17,10 +17,10 @@ int main(int argc, char ** argv)
 	IMG_Init(IMG_INIT_PNG);
 
 	SDL_Window * window = SDL_CreateWindow("Application",
-		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
+		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 480, 480, 0);
 
 	SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, 0);
-	SDL_Surface * image = IMG_Load("../../images/rectangle.png");
+	SDL_Surface * image = IMG_Load("../../images/pin_design_outline.png");
 	SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image);
 
 	while (!quit)
@@ -29,6 +29,32 @@ int main(int argc, char ** argv)
 
 		switch (event.type)
 		{
+			case SDL_KEYDOWN:
+				switch (event.key.keysym.sym)
+				{
+					case SDLK_KP_1:
+						break;
+					case SDLK_KP_2:
+						break;
+					case SDLK_KP_3:
+						break;
+					case SDLK_KP_4:
+						break;
+					case SDLK_KP_5:
+						break;
+					case SDLK_KP_6:
+						break;
+					case SDLK_KP_7:
+						break;
+					case SDLK_KP_8:
+						break;
+					case SDLK_KP_9:
+						break;
+					default:
+						cout << "Unmapped key press." << endl;
+						break;
+				}
+				break;
 			case SDL_QUIT:
 				quit = true;
 				break;

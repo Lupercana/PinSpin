@@ -1,7 +1,6 @@
 #ifndef Check_H
 #define Check_H
 
-#include "stdafx.h"
 #include <iostream>
 #include <vector>
 #include <include/SDL.h>   

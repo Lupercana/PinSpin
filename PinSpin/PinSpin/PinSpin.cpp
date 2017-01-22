@@ -1,7 +1,6 @@
 // PinSpin.cpp : Application made during Spartahack 2017
 //
 
-#include "stdafx.h"
 #include <iostream>
 #include <vector>
 #include <include/SDL.h>   
@@ -10,8 +9,14 @@
 #include <stdlib.h> 
 #include <time.h>
 #include "Check.h"
+#include "SerialClass.h"
+#include <windows.h>
+#include <stdio.h>
+#include <tchar.h>
 
 using namespace std;
+
+const int PASSWORD_LENGTH = 4;
 
 // Misc
 SDL_Surface* img_base = IMG_Load("../../images/pin_design_outline.png");
@@ -196,8 +201,35 @@ void display_selection_outline(SDL_Renderer* renderer, SDL_Texture* txt_sel_outl
 		SDL_RenderCopy(renderer, txt_sel_outline, NULL, &rect);
 }
 
+void arduino(Serial* SP, char oneorzero)
+{
+	//printf("Welcome to the serial test app!\n\n");
+
+	// adjust as needed
+
+	//if (SP->IsConnected())
+		//printf("We're connected");
+
+	char incomingData[1];			// don't forget to pre-allocate memory
+	incomingData[0] = oneorzero;
+
+	int dataLength = 1;
+	int readResult = 0;
+
+	//while (SP->IsConnected())
+	if (SP->IsConnected())
+	{
+		printf("%d", SP->WriteData(incomingData, dataLength));
+		// printf("Bytes read: (0 means no data available) %i\n",readResult);
+		//incomingData[readResult] = 0;
+
+		//printf("%s", incomingData);
+	}
+}
+
 int main(int argc, char ** argv)
 {
+	Serial* SP = new Serial("\\\\.\\COM4");    // adjust as needed
 	srand(time(NULL));
 	int current_press = 0;
 	bool quit = false;
@@ -239,7 +271,7 @@ int main(int argc, char ** argv)
 	vector<SDL_Texture*> rand_txt_letters = randomizer(txt_letters);
 
 	vector< SDL_Texture*> password;
-	generatePassword(4, txt_numbers, txt_colors, txt_shapes, txt_letters, password);
+	generatePassword(PASSWORD_LENGTH, txt_numbers, txt_colors, txt_shapes, txt_letters, password);
 	int password_progress = 0;
 	bool password_match = true;
 	while (!quit)
@@ -247,6 +279,7 @@ int main(int argc, char ** argv)
 		SDL_RenderClear(renderer);
 		SDL_WaitEvent(&event);
 
+		bool beep = true;
 		switch (event.type)
 		{
 			int index;
@@ -301,7 +334,7 @@ int main(int argc, char ** argv)
 						break;
 					case SDLK_KP_0: // generate new password
 						index = -1;
-						generatePassword(4, txt_numbers, txt_colors, txt_shapes, txt_letters, password);
+						generatePassword(PASSWORD_LENGTH, txt_numbers, txt_colors, txt_shapes, txt_letters, password);
 						current_press = 11;
 						break;
 					case SDLK_KP_PERIOD: // password reset progress 
@@ -312,9 +345,11 @@ int main(int argc, char ** argv)
 						break;
 					default:
 						index = -1;
+						beep = false;
 						cout << "Unmapped key press." << endl;
 						break;
 				}
+
 				if (index != -1)
 				{
 					if (password_match = check_key_match(password, password_progress,
@@ -322,7 +357,8 @@ int main(int argc, char ** argv)
 						rand_txt_letters.at(index))) // did this on purpose
 						password_progress++;
 				}
-
+				//if (beep)
+					//arduino(SP, 1);
 				break;
 			case SDL_KEYUP:
 				current_press = 0;
@@ -365,7 +401,7 @@ int main(int argc, char ** argv)
 
 	IMG_Quit();
 	SDL_Quit();
-
+	delete SP;
 	return 0;
 }
 

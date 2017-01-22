@@ -6,6 +6,7 @@
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "stdafx.h"
 
 class Serial
 {
@@ -37,5 +38,7 @@ public:
 
 
 };
+
+
 
 #endif // SERIALCLASS_H_INCLUDED

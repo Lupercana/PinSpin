@@ -2,7 +2,6 @@
 #define Random_H
 
 #include <vector>
-#include "stdafx.h"
 #include <iostream>
 #include <vector>
 #include <include/SDL.h>   
